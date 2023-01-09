@@ -19,6 +19,15 @@ string(
 
 # ---- Options, variables ----
 
+if(POLICY CMP0077)
+  cmake_policy(SET CMP0077 NEW) # option() honors variables already set
+endif()
+
+if(NOT DISABLE_LEIA_CONFIGURATION)
+  set(SIMDJSON_ENABLE_THREADS OFF)
+  set(SIMDJSON_DISABLE_DEPRECATED_API ON)
+endif()
+
 # These version numbers are modified by tools/release.py
 set(SIMDJSON_LIB_VERSION "11.0.0" CACHE STRING "simdjson library version")
 set(SIMDJSON_LIB_SOVERSION "11" CACHE STRING "simdjson library soversion")
